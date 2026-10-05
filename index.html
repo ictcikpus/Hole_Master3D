@@ -19,6 +19,7 @@
             -webkit-user-select: none;
             font-family: 'Plus Jakarta Sans', sans-serif;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body, html {
@@ -28,24 +29,24 @@
             height: 100%;
             overflow: hidden;
             background-color: #020617;
-            touch-action: manipulation;
+            touch-action: none;
         }
 
         /* Glassmorphism styling */
         .glass-panel {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         /* Compact HUD Pill badges */
         .hud-pill {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.88);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 9999px;
-            padding: 5px 12px;
+            padding: 6px 14px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.5);
             pointer-events: auto !important;
             cursor: pointer;
@@ -58,7 +59,7 @@
             justify-content: space-between;
             gap: 8px;
             font-size: 11px;
-            padding: 3px 8px;
+            padding: 4px 8px;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.05);
         }
@@ -83,10 +84,10 @@
         /* Joystick Visualizer */
         #joystick-base {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
             border: 2px solid rgba(56, 189, 248, 0.5);
             pointer-events: none;
             display: none;
@@ -96,19 +97,13 @@
 
         #joystick-stick {
             position: absolute;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: linear-gradient(135deg, #10b981, #06b6d4);
             box-shadow: 0 4px 16px rgba(16, 185, 129, 0.7);
             pointer-events: none;
             transform: translate(-50%, -50%);
-        }
-
-        /* Fever Glow Pulse */
-        .fever-active-glow {
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.8), inset 0 0 15px rgba(239, 68, 68, 0.6);
-            border-color: rgba(251, 191, 36, 0.9) !important;
         }
 
         button, .level-card {
@@ -141,7 +136,7 @@
                 <div class="hud-pill text-white text-center flex flex-col items-center px-4 py-1.5">
                     <div class="flex items-center gap-1.5">
                         <span class="text-[9px] uppercase text-amber-400 font-bold tracking-wider">WAKTU:</span>
-                        <span id="timer" class="text-lg sm:text-xl font-black text-amber-400 tracking-wider">120s</span>
+                        <span id="timer" class="text-lg sm:text-xl font-black text-amber-400 tracking-wider">180s</span>
                     </div>
                     <div class="w-24 bg-slate-800/80 rounded-full h-1 mt-0.5 overflow-hidden border border-slate-700">
                         <div id="target-progress-bar" class="bg-gradient-to-r from-amber-400 to-emerald-400 h-full w-0 transition-all duration-300"></div>
@@ -211,7 +206,7 @@
             </h1>
 
             <p class="text-slate-300 max-w-lg text-xs md:text-sm mb-5 leading-relaxed">
-                Kendalikan hole 3D nyata dengan efek kedalaman kedalam tanah. Berlomba memakan kota melawan AI Competitor!
+                Kendalikan hole 3D nyata dengan efek kedalaman. Selesaikan target poin tiap level hingga mencapai Planet Bumi!
             </p>
 
             <!-- Level Selector Cards -->
@@ -382,7 +377,7 @@
 
         const ECO_FACTS = [
             "Melahap & mendaur ulang plastik membantu mencegah mikroplastik meracuni laut.",
-            "Panel surya yang didaur ulang menghasilkan energi bersih baru tanpa limbah beracun.",
+            "Panel surya yang didaur ulang menghasilkan energi bersih tanpa limbah beracun.",
             "Daur ulang 1 ton kertas menyelamatkan 17 pohon dewasa dan 26.000 liter air.",
             "Limbah elektronik mengandung logam berharga seperti emas & tembaga yang bisa didaur ulang.",
             "Mendaur ulang kaleng aluminium menghemat 95% energi dibanding membuat dari bahan mentah."
@@ -396,11 +391,11 @@
         ];
 
         const LEVELS_CONFIG = [
-            { id: 1, name: "Level 1: Taman & Sampah", targetScore: 1500, duration: 120, icon: "fa-tree", mapSize: 80 },
-            { id: 2, name: "Level 2: Perumahan Surya", targetScore: 4000, duration: 150, icon: "fa-solar-panel", mapSize: 110 },
-            { id: 3, name: "Level 3: Kawasan Industri", targetScore: 9000, duration: 180, icon: "fa-industry", mapSize: 150 },
-            { id: 4, name: "Level 4: Wilayah Pesisir", targetScore: 20000, duration: 210, icon: "fa-volcano", mapSize: 220 },
-            { id: 5, name: "Level 5: Planet Bumi", targetScore: 45000, duration: 240, icon: "fa-earth-americas", mapSize: 350 }
+            { id: 1, name: "Level 1: Taman & Sampah", targetScore: 1500, duration: 180, icon: "fa-tree", mapSize: 80 },
+            { id: 2, name: "Level 2: Perumahan Surya", targetScore: 4500, duration: 210, icon: "fa-solar-panel", mapSize: 110 },
+            { id: 3, name: "Level 3: Kawasan Industri", targetScore: 10000, duration: 240, icon: "fa-industry", mapSize: 150 },
+            { id: 4, name: "Level 4: Wilayah Pesisir", targetScore: 22000, duration: 270, icon: "fa-volcano", mapSize: 220 },
+            { id: 5, name: "Level 5: Planet Bumi", targetScore: 50000, duration: 300, icon: "fa-earth-americas", mapSize: 350 }
         ];
 
         let scene, camera, renderer;
@@ -409,7 +404,7 @@
         let unlockedLevels = [1];
         let score = 0;
         let playerHoleRadius = 1.6;
-        let gameTimer = 120;
+        let gameTimer = 180;
         let timerInterval = null;
         let isPlaying = false;
         let totalItemsEaten = 0;
@@ -427,8 +422,7 @@
         const joystickVector = new THREE.Vector2();
         const keys = { w: false, a: false, s: false, d: false, ArrowUp: false, ArrowLeft: false, ArrowDown: false, ArrowRight: false };
 
-        // 3D Depth Mask Hole elements
-        let playerHoleGroup, coverDiskMesh, pitCylinderMesh, holeBorderMesh;
+        let playerHoleGroup;
         let eatableObjects = [];
         let particles = [];
         let movingVehicles = [];
@@ -438,7 +432,6 @@
         function createDepthHoleMesh(colorHex = 0x10b981) {
             const group = new THREE.Group();
 
-            // 1. Cover Disk with Depth Mask (Writes to Depth Buffer at Y=0.01 to visually cut ground)
             const coverGeo = new THREE.CircleGeometry(1, 32);
             const coverMat = new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: true });
             const coverDisk = new THREE.Mesh(coverGeo, coverMat);
@@ -447,7 +440,6 @@
             coverDisk.renderOrder = 0;
             group.add(coverDisk);
 
-            // 2. 3D Pit Cylinder extending down into ground Y = -0.1 to -12
             const pitGeo = new THREE.CylinderGeometry(1, 0.9, 12, 32, 1, true);
             const pitMat = new THREE.MeshStandardMaterial({ 
                 color: 0x050505, 
@@ -459,7 +451,6 @@
             pitCylinder.renderOrder = 0;
             group.add(pitCylinder);
 
-            // 3. Glowing Border Ring on ground surface
             const ringGeo = new THREE.RingGeometry(0.95, 1.12, 32);
             const ringMat = new THREE.MeshBasicMaterial({ color: colorHex, side: THREE.DoubleSide });
             const borderRing = new THREE.Mesh(ringGeo, ringMat);
@@ -478,7 +469,6 @@
             const groundGroup = new THREE.Group();
             groundGroup.name = 'cityGround';
 
-            // Ground plane (renderOrder 1)
             const groundGeo = new THREE.PlaneGeometry(size * 2, size * 2);
             const groundMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.8 });
             const groundMesh = new THREE.Mesh(groundGeo, groundMat);
@@ -487,7 +477,6 @@
             groundMesh.renderOrder = 1;
             groundGroup.add(groundMesh);
 
-            // Green park blocks
             const blockGeo = new THREE.PlaneGeometry(24, 24);
             const blockMat = new THREE.MeshStandardMaterial({ color: 0x064e3b, roughness: 0.6 });
 
@@ -684,7 +673,6 @@
                 bot.meshGroup.position.copy(bot.pos);
                 bot.meshGroup.scale.set(bot.radius, 1, bot.radius);
 
-                // AI eating logic
                 for (let i = eatableObjects.length - 1; i >= 0; i--) {
                     const item = eatableObjects[i];
                     if (item.isFalling) continue;
@@ -988,7 +976,6 @@
                     camera.lookAt(playerHoleGroup.position);
                 }
 
-                // Update moving vehicles & pedestrians
                 movingVehicles.forEach(v => {
                     if (!v.isFalling) v.mesh.position.addScaledVector(v.vel, delta);
                 });
